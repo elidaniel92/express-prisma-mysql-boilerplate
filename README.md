@@ -18,4 +18,4 @@ npm run dev
 
 ### Swagger-UI-Express
 
-Swagger UI: http://localhost:3000/docs/
+Swagger UI: http://localhost:3000/docs
