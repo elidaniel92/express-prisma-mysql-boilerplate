@@ -16,6 +16,6 @@ npm run start
 npm run dev
 ```
 
-### Swagger-UI-Expresss
+### Swagger-UI-Expres
 
 Swagger UI: http://localhost:3000/docs/
