@@ -1,2 +1,17 @@
 # express-prisma-mysql-boilerplate
-express-prisma-mysql-boilerplate
+
+```
+npm install
+```
+
+```
+npm run build
+```
+
+```
+npm run start
+```
+
+### Swagger-UI-Express
+
+Swagger UI: http://localhost:3000/docs/
