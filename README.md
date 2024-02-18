@@ -1,5 +1,7 @@
 # express-prisma-mysql-boilerplate
 
+node
+
 ```
 npm install
 ```
