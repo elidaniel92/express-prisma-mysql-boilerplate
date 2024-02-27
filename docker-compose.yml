@@ -10,6 +10,8 @@ services:
       - db
     ports:
       - "3000:3000"
+    env_file:
+      - docker/local.env
 
   # MySQL database
   db:
