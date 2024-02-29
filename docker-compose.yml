@@ -12,8 +12,6 @@ services:
       - "3000:3000"
     env_file:
       - docker/local.env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   # MySQL database
   db:
