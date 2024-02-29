@@ -1,6 +1,9 @@
 # Use an official Node.js runtime as a parent image
 FROM node:20
 
+# Update npm
+RUN npm install -g npm
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
@@ -11,7 +14,10 @@ COPY package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY tsconfig.json .
+COPY /src ./src
+COPY /static-files ./static-files
+COPY /prisma ./prisma
 
 # Compile TypeScript code
 RUN npm run build
