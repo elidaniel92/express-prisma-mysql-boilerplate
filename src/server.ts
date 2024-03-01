@@ -11,6 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 configRoutes(app);
 
 app.listen(PORT, (): void => {
-    console.log(`Connected successfully on port ${PORT}`);
+    console.log(`hotConnected successfully on port ${PORT}`);
     console.log(`Example app listening at http://localhost:${PORT}`)
 });

@@ -12,7 +12,10 @@ services:
       - "3000:3000"
     env_file:
       - docker/node-local.env
-
+    volumes:
+      - ./:/usr/src/app
+      - ignore:/usr/src/app/node_modules/
+  
   # MySQL database
   db:
     build:
@@ -25,3 +28,6 @@ services:
       MYSQL_PASSWORD: admin
     ports:
       - "3306:3306"
+
+volumes:
+  ignore:      
