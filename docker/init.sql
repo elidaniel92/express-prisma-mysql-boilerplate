@@ -11,4 +11,5 @@ CREATE TABLE IF NOT EXISTS Pacientes (
     endereco VARCHAR(255) NOT NULL,
     contatoEmergencia VARCHAR(255) NOT NULL,
     telefoneEmergencia VARCHAR(15) NOT NULL
+    cadastro CHAR(7) NOT NULL
 );

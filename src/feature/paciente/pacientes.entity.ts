@@ -10,6 +10,7 @@ export const pacienteSchema = z.object({
     endereco: z.string(),
     contatoEmergencia: z.string(),
     telefoneEmergencia: z.string(),
+    cadastro: z.string(),
 });
 
 export type Paciente = z.infer<typeof pacienteSchema>;
