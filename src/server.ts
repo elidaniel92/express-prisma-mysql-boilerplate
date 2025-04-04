@@ -1,16 +1,23 @@
 import express, { Application, Request, Response } from 'express';
-import bodyParser from 'body-parser';
 import { configRoutes } from './routes';
+import { settingBodyParser } from './body-parser';
+import { inject, injectable, singleton } from 'tsyringe';
 
-const app: Application = express();
-const PORT = 3000;
+@singleton()
+@injectable()
+export class Server {
+    constructor(
+        @inject("Application")
+        private app: Application
+    ) {}
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+    public listen(port: number) {
+        settingBodyParser(this.app);
+        configRoutes(this.app);
 
-configRoutes(app);
-
-app.listen(PORT, (): void => {
-    console.log(`Connected successfully on port ${PORT}`);
-    console.log(`Example app listening at http://localhost:${PORT}`)
-});
+        this.app.listen(port, (): void => {
+            console.log(`Connected successfully on port ${port}`);
+            console.log(`Example app listening at http://localhost:${port}`)
+        });
+    }
+}

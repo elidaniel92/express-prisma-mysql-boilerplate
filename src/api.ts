@@ -1,23 +1,14 @@
 import express, { Application, Request, Response } from 'express';
-import { connectMySQLPrisma } from './start-prisma';
 import { Paciente } from './paciente';
+import { container } from 'tsyringe';
+import { PrismaClient } from '@prisma/client';
+import { PacienteController } from './paciente.controller';
 
 export function configAPIRoutes(app: Application) {
-    const prismaMySQLConn = connectMySQLPrisma();
+    const c = container.resolve(PacienteController);
+    
+    const prismaMySQLConn = container.resolve<PrismaClient>(PrismaClient);
 
-    app.post('/api/pacientes', async (req: Request, res: Response): Promise<Response> => {
-        console.log(req.body);
-
-        const paciente: Paciente = req.body;
-
-        paciente.dataNascimento = new Date(paciente.dataNascimento);
-        paciente.cpf = '123';
-        
-        const pacienteCreated = await prismaMySQLConn.pacientes.create({
-            data: paciente,
-        });
-        return res.status(201).send(`Paciente criado com o id ${pacienteCreated.id}`);
-    });
 
     app.get('/api/pacientes', async (req: Request, res: Response): Promise<Response> => {
         const pacientes = await prismaMySQLConn.pacientes.findMany()
