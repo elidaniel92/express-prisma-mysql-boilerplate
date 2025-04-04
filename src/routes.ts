@@ -1,11 +1,9 @@
 import express, { Application } from 'express';
 import path from 'path';
-import { configAPIRoutes } from './api';
+import { container } from 'tsyringe';
+import { PacienteController } from './feature/paciente/paciente.controller';
 
 export function configRoutes(app: Application) {
-    console.log('Config routes...')
-
+    container.resolve(PacienteController);
     app.use('/site', express.static(path.join(__dirname, "./../static-files")));
-
-    configAPIRoutes(app);
 }

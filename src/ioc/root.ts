@@ -1,15 +1,14 @@
-import express, { Application } from 'express';
+import express, { Application, Express } from 'express';
 import { PrismaClient } from "@prisma/client";
-import { container } from "tsyringe";
+import { container, delay, inject, injectable, singleton } from "tsyringe";
 
 const prisma: PrismaClient = new PrismaClient();
-if (prisma == undefined) { console.log("undefined"); } else { console.log("NOT undefined") };
-
 container.register<PrismaClient>(PrismaClient, {
     useValue: prisma,
 });
 
-const app: Application = express();
-container.register<Application>("Application", {
+const app: Express = express();
+container.register<Express>("Express", {
     useValue: app,
 });
+
