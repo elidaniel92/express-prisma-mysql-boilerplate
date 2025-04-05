@@ -18,10 +18,10 @@ export class PacienteController {
         @inject("Express")
         private app: Express,
     ) {
+        this.app.get('/api/pacientes', async (req, res) => { return this.get(req, res) });
         this.app.post('/api/pacientes', async (req, res) => { return this.post(req, res) });
         this.app.get('/api/pacientes/:id', async (req, res) => { return this.getById(req, res) });
         this.app.get('/api/pacientes?', async (req, res) => { return this.getByQueryParameters(req, res) });
-        this.app.get('/api/pacientes', async (req, res) => { return this.get(req, res) });
         this.app.put('/api/pacientes/:id', async (req, res) => { return this.putById(req, res) });
         this.app.patch('/api/pacientes/:id', async (req, res) => { return this.patchById(req, res) });
         this.app.delete('/api/pacientes/:id', async (req, res) => { return this.deleteById(req, res) });
@@ -39,6 +39,7 @@ export class PacienteController {
     };
 
     public async get(req: Request, res: Response): Promise<express.Response<any, Record<string, any>>> {
+        console.log('get');
         const pacientes: Paciente[] = await this.pacienteService.findAll();
         return res.status(200).send(pacientes);
     };

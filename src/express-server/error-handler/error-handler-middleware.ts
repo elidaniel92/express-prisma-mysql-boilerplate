@@ -14,6 +14,7 @@ export class ErrorHandlerMiddleware {
             req: Request,
             res: Response,
             next: NextFunction) => {
+            // console.log(err);
             if (!res.headersSent) {
                 res.status(500).send({
                     errorName: "Internal Server Error",

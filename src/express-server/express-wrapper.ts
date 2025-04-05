@@ -1,7 +1,7 @@
 import express, { Application, Express } from 'express';
 import { singleton, injectable, inject } from 'tsyringe';
 import { ErrorHandlerMiddleware } from './error-handler/error-handler-middleware';
-import { configRoutes } from '../routes';
+import { configRoutes } from './routes';
 import { settingBodyParser } from './body-parser';
 
 @singleton()
