@@ -11,4 +11,3 @@ const app: Express = express();
 container.register<Express>("Express", {
     useValue: app,
 });
-

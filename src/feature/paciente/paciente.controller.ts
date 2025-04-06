@@ -18,15 +18,24 @@ export class PacienteController {
         @inject("Express")
         private app: Express,
     ) {
-        this.app.get('/api/pacientes', async (req, res) => { return this.get(req, res) });
-        this.app.post('/api/pacientes', async (req, res) => { return this.post(req, res) });
-        this.app.get('/api/pacientes/:id', async (req, res) => { return this.getById(req, res) });
-        this.app.get('/api/pacientes?', async (req, res) => { return this.getByQueryParameters(req, res) });
-        this.app.put('/api/pacientes/:id', async (req, res) => { return this.putById(req, res) });
-        this.app.patch('/api/pacientes/:id', async (req, res) => { return this.patchById(req, res) });
-        this.app.delete('/api/pacientes/:id', async (req, res) => { return this.deleteById(req, res) });
-        this.app.delete('/api/pacientes', async (req, res) => { return this.deleteAll(req, res) });
-        this.app.delete('/api/pacientes?', async (req, res) => { return this.deleteAll(req, res) });
+        // CRUD
+
+        // Create
+        this.app.post('/api/pacientes', this.post.bind(this));
+
+        // Read 
+        this.app.get('/api/pacientes', this.get.bind(this));
+        this.app.get('/api/pacientes/:id', this.getById.bind(this));
+        this.app.get('/api/pacientes?', this.getByQueryParameters.bind(this));
+
+        // Update
+        this.app.put('/api/pacientes/:id', this.putById.bind(this));
+        this.app.patch('/api/pacientes/:id', this.patchById.bind(this));
+
+        // Delete
+        this.app.delete('/api/pacientes/:id', this.deleteById.bind(this));
+        this.app.delete('/api/pacientes', this.deleteAll.bind(this));
+        this.app.delete('/api/pacientes?', this.deleteAll.bind(this));
     }
 
     public async post(req: Request, res: Response): Promise<express.Response<any, Record<string, any>>> {
@@ -39,7 +48,6 @@ export class PacienteController {
     };
 
     public async get(req: Request, res: Response): Promise<express.Response<any, Record<string, any>>> {
-        console.log('get');
         const pacientes: Paciente[] = await this.pacienteService.findAll();
         return res.status(200).send(pacientes);
     };
